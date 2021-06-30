@@ -8,6 +8,8 @@ pipeline {
     stages {
         stage('Testing') {
             steps {
+                git branch: '$BRANCH', changelog: false, poll: false, url: 'https://github.com/Vanyaaa333/automation-practice-project'
+
                 sh "mvn test -Dmaven.test.failure.ignore=true"
             }
         }
