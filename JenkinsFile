@@ -10,7 +10,7 @@ pipeline {
             steps {
                 git branch: '$BRANCH', changelog: false, poll: false, url: 'https://github.com/Vanyaaa333/automation-practice-project'
 
-                bat "mvn test -Dmaven.test.failure.ignore=true"
+                bat "mvn test"
             }
         }
         stage('Allure-report') {
