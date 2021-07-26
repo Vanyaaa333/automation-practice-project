@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderHistoryPage extends BasePage {
 
     private static final By ODER_HISTORY_PAGE_LABEL = By.xpath("//h1[text()='Order history']");
-    protected final By DOWNLOAD_FILE_LOCATOR = By.xpath("//tr[@class='last_item alternate_item']//td[@class='history_invoice']//a");
+    protected final By DOWNLOAD_FILE_LOCATOR = By.xpath("//tr[@class='last_item ']//td[@class='history_invoice']//a");
     public static final By SORT_BY_DATE_BUTTON = By.xpath("//th[contains(.,'Date')]");
     public static final By REORDER_BUTTON = By.xpath("//a[@title='Reorder']");
     public static final By SEND_COMMENT_BUTTON = By.xpath("//button[@name='submitMessage']");

@@ -109,6 +109,15 @@
 | 3 | Fill register fields | Fields was filled |
 | 4 | Clicking register button | My account page was opened |
 
+## Test suite 4 - My addresses tests
+### Test case 4.1 - Actions with product test with add new product
+| Step | Description | Expected result |
+| --- | --- | --- | 
+| 1 | Open login page  | Login page was opened |
+| 2 | Fill new user email and click create button | Create an account page was opened |
+| 3 | Fill register fields | Fields was filled |
+| 4 | Clicking register button | My account page was opened |
+
 
 
 

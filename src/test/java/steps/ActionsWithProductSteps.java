@@ -3,8 +3,7 @@ package steps;
 import elements.CatalogElements.CatalogCheckboxes;
 import elements.ProductElement;
 import io.qameta.allure.Step;
-import models.ProductModels.PrintedDressModel;
-import models.ProductModels.PrintedSummerDressModel;
+import models.ProductModels.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -31,9 +30,9 @@ public class ActionsWithProductSteps extends AbstractStep{
         return new Object[][]{
                 {PrintedSummerDressModel.Color, PrintedSummerDressModel.Categories, PrintedSummerDressModel.Availability, PrintedSummerDressModel.Composition, PrintedSummerDressModel.Condition, PrintedSummerDressModel.Style, PrintedSummerDressModel.Name},
                 {PrintedDressModel.Color, PrintedDressModel.Categories, PrintedDressModel.Availability, PrintedDressModel.Composition, PrintedDressModel.Condition, PrintedDressModel.Style, PrintedDressModel.Name},
-                //{PrintedChiffonDressModel.Color, PrintedChiffonDressModel.Categories, PrintedChiffonDressModel.Availability, PrintedChiffonDressModel.Composition, PrintedChiffonDressModel.Condition, PrintedChiffonDressModel.Style, PrintedChiffonDressModel.Name},
-                //{BlouseModel.Color, BlouseModel.Categories, BlouseModel.Availability, BlouseModel.Composition, BlouseModel.Condition, BlouseModel.Style, BlouseModel.Name},
-                //{FadedShortSleeveTShirtsModel.Color, FadedShortSleeveTShirtsModel.Categories, FadedShortSleeveTShirtsModel.Availability, FadedShortSleeveTShirtsModel.Composition, FadedShortSleeveTShirtsModel.Condition, FadedShortSleeveTShirtsModel.Style, FadedShortSleeveTShirtsModel.Name},
+                {PrintedChiffonDressModel.Color, PrintedChiffonDressModel.Categories, PrintedChiffonDressModel.Availability, PrintedChiffonDressModel.Composition, PrintedChiffonDressModel.Condition, PrintedChiffonDressModel.Style, PrintedChiffonDressModel.Name},
+                {BlouseModel.Color, BlouseModel.Categories, BlouseModel.Availability, BlouseModel.Composition, BlouseModel.Condition, BlouseModel.Style, BlouseModel.Name},
+                {FadedShortSleeveTShirtsModel.Color, FadedShortSleeveTShirtsModel.Categories, FadedShortSleeveTShirtsModel.Availability, FadedShortSleeveTShirtsModel.Composition, FadedShortSleeveTShirtsModel.Condition, FadedShortSleeveTShirtsModel.Style, FadedShortSleeveTShirtsModel.Name},
         };
     }
 
@@ -76,7 +75,7 @@ public class ActionsWithProductSteps extends AbstractStep{
 
     @Step("Delete added product")
     public void deleteProduct() {
-        shoppingCartPage.clickButton(shoppingCartPage,DELETE_PRODUCT_BUTTON);
+        shoppingCartPage.deleteProduct();
     }
 
     @Step("Checking that product buying is success")

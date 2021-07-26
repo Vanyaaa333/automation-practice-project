@@ -38,7 +38,7 @@ public class ActionsWithProductTests extends PreconditionsForSomeTests {
 
     @Test(description = "Delete added product test")
     @Severity(value = SeverityLevel.CRITICAL)
-    public void deleteAddedProductTest() {
+    public void deleteAddedProductTest() throws InterruptedException {
         preconditionsForSomeTests();
         actionsWithProductSteps
                 .addSelectedProductToCart(BlouseModel.Name);
