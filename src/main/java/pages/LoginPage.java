@@ -9,9 +9,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 @Log4j2
 public class LoginPage extends BasePage{
 
-    private final By INPUT_EMAIL = By.id("email");
-    private final By PASSWORD = By.id("passwd");
-    public final By LOGIN_BUTTON = By.id("SubmitLogin");
+    private static final By INPUT_EMAIL = By.id("email");
+    private static final By PASSWORD = By.id("passwd");
+    private static final By LOGIN_BUTTON = By.id("SubmitLogin");
+    private static final By EMAIL_FIELD_TO_CREATE_ACCOUNT = By.id("email_create");
+    private static final By CREATE_AN_ACCOUNT_BUTTON = By.id("SubmitCreate");
+    public static final By INVALID_DATA_ERROR = By.xpath("//div[@class='alert alert-danger']//p[contains(.,'There is 1 error')]");
+
 
     public LoginPage(WebDriver driver, int timeOutInSeconds) {
         super(driver, timeOutInSeconds);
@@ -37,6 +41,18 @@ public class LoginPage extends BasePage{
         driver.findElement(PASSWORD).sendKeys(password);
         log.info("Click {}", LOGIN_BUTTON);
         driver.findElement(LOGIN_BUTTON).click();
+    }
+
+    public void isAlertOpen(By alert) {
+        log.info("Checking that the alert was opened");
+        explicitlyWait.until(ExpectedConditions.visibilityOfElementLocated(INVALID_DATA_ERROR));
+    }
+
+    public void fillNewUserEmailAndClickCreateButton(String emailAddress) {
+        log.info("Send text {} to text field {}", EMAIL_FIELD_TO_CREATE_ACCOUNT, "Email address");
+        driver.findElement(EMAIL_FIELD_TO_CREATE_ACCOUNT).sendKeys(emailAddress);
+        log.info("Click {}", CREATE_AN_ACCOUNT_BUTTON);
+        driver.findElement(CREATE_AN_ACCOUNT_BUTTON).click();
     }
 
 }

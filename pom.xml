@@ -20,6 +20,7 @@
         <junit.version>4.11</junit.version>
         <log4j-api.version>2.14.1</log4j-api.version>
         <log4j-core.version>2.14.1</log4j-core.version>
+        <mockneat>0.3.0</mockneat>
         <lombok.version>1.18.20</lombok.version>
         <jackson-dataformat-yaml.version>2.10.1</jackson-dataformat-yaml.version>
         <allure-maven.version>2.10.0</allure-maven.version>
@@ -71,6 +72,11 @@
     </build>
 
     <dependencies>
+            <dependency>
+                <groupId>net.andreinc.mockneat</groupId>
+                <artifactId>mockneat</artifactId>
+                <version>${mockneat}</version>
+            </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -116,6 +122,12 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
 
 
 </project>

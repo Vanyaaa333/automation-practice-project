@@ -1,20 +1,35 @@
 package steps;
 
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
 import pages.LoginPage;
-import utils.PropertiesUtil;
+import pages.MyAccountPages.MyAccountPage;
 
-@Log4j2
+import static constants.ConstantsForLoginTests.*;
+import static pages.LoginPage.INVALID_DATA_ERROR;
+
 public class LoginSteps extends AbstractStep{
 
-    LoginPage loginPage = new LoginPage(driver,5);
-    private final String VALID_EMAIL = PropertiesUtil.getSystemProperty("valid_email");
-    private final String VALID_PASSWORD = PropertiesUtil.getSystemProperty("valid_password");
+    protected LoginPage loginPage = new LoginPage(driver,3);
+    protected MyAccountPage myAccountPage = new MyAccountPage(driver,3);
 
     public LoginSteps(WebDriver driver) {
         super(driver);
+    }
+
+    @DataProvider
+    public static Object[][] invalidLoginData() {
+        return new Object[][]{
+                {VALID_EMAIL, INVALID_PASSWORD},
+                {INVALID_EMAIL, VALID_PASSWORD},
+                {EMPTY_EMAIL_FIELD, VALID_PASSWORD},
+                {VALID_EMAIL, EMPTY_PASSWORD_FIELD},
+                {INVALID_EMAIL_SCRIPT, VALID_PASSWORD},
+                {INVALID_EMAIL_HTML_TAG, VALID_PASSWORD},
+                {INVALID_EMAIL_DIFFERENT_SYMBOLS, VALID_PASSWORD},
+                {EMAIL_WITH_WHITESPACES_TEXT, VALID_PASSWORD}
+        };
     }
 
     @Step("Open login page")
@@ -27,36 +42,14 @@ public class LoginSteps extends AbstractStep{
     @Step("Authentication with valid data")
     public void loginWithValidData() {
         loginPage.authentication(VALID_EMAIL, VALID_PASSWORD);
-        //successfulLoadingPage(homePage);
+        successfulLoadingPage(myAccountPage);
     }
 
-//    @Step("Authentication with invalid data")
-//    public void authenticationWithInvalidData(String email, String password) {
-//        loginPage.sendData(email, password);
-//        loginPage.alertOpen(ERROR_ALERT);
-//        validateComponentIsLoaded(loginPage);
-//    }
-//
-//    @Step("Authentication with valid empty data")
-//    public void authenticationWithEmptyData() {
-//        loginPage.sendData("", "");
-//        loginPage.alertOpen(ENTER_PASSWORD_ERROR_ALERT);
-//        loginPage.alertOpen(ENTER_EMAIL_ERROR_ALERT);
-//        validateComponentIsLoaded(loginPage);
-//    }
-//
-//    @Step("Authentication with valid empty password")
-//    public void authenticationWithEmptyPassword() {
-//        loginPage.sendData(VALID_PASSWORD, "");
-//        loginPage.alertOpen(ENTER_PASSWORD_ERROR_ALERT);
-//        validateComponentIsLoaded(loginPage);
-//    }
-//
-//    @Step("Authentication with valid empty email")
-//    public void authenticationWithEmptyEmail() {
-//        loginPage.sendData("", VALID_PASSWORD);
-//        loginPage.alertOpen(ENTER_EMAIL_ERROR_ALERT);
-//        validateComponentIsLoaded(loginPage);
-//    }
+    @Step("Authentication with invalid data")
+    public void loginWithInvalidData(String email, String password) {
+        loginPage.authentication(email, password);
+        loginPage.isAlertOpen(INVALID_DATA_ERROR);
+        successfulLoadingPage(loginPage);
+    }
 
 }

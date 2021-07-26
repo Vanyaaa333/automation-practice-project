@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Automation Practice Project" parallel="tests">
-    <test name="Checking of the login form">
+    <test name="Checking actions with user">
         <classes>
-            <class name="tests.LoginTest">
-                <methods>
-                    <include name="validAuthentication"/>
-                </methods>
-            </class>
+            <class name="tests.ActionsWithUserAccountTests.LoginTests"/>
+            <class name="tests.ActionsWithUserAccountTests.RegisterNewUserTests"/>
+        </classes>
+    </test>
+    <test name="Checking actions with product">
+        <classes>
+            <class name="tests.ProductTests.ActionsWithProductTests"/>
+        </classes>
+    </test>
+    <test name="Checking actions with my account pages">
+        <classes>
+            <class name="tests.MyAccountTests.MyAddressesTests"/>
+            <class name="tests.MyAccountTests.OrderHistoryAndDetailsTests"/>
         </classes>
     </test>
 </suite>
