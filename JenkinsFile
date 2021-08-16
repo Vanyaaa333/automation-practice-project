@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "M3"
+    }
+
+    stages {
+        stage('Testing') {
+            steps {
+                git branch: '$BRANCH', changelog: false, poll: false, url: 'https://github.com/Vanyaaa333/automation-practice-project'
+
+                bat "mvn test -Dmaven.test.failure.ignore=true"
+            }
+        }
+        stage('Allure-report') {
+         steps {
+             script {
+                     allure([
+                             includeProperties: false,
+                             jdk: '',
+                             properties: [],
+                             reportBuildPolicy: 'ALWAYS',
+                             results: [[path: 'target/allure-results']]
+                     ])
+             }
+         }
+        }
+
+    }
+
+}

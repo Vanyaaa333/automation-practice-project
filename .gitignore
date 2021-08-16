@@ -1,3 +1,6 @@
 # Project exclude paths
 /target/
 /AutomationPracticeProject.iml
+/allure-results/
+/.idea/
+/.allure/
